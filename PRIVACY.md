@@ -1,10 +1,10 @@
-# Aviso de privacidad — MichiHub Educación
+# Aviso de privacidad — michiEducation
 
 **Última actualización:** 22 de septiembre de 2026
 
 ## Responsable
 
-MichiHub Educación es un proyecto de **Ángel Said Cruz Muñoz**. Para dudas de privacidad puedes escribir a **michihub@hotmail.com**.
+michiEducation es un proyecto de **Ángel Said Cruz Muñoz**. Para dudas de privacidad puedes escribir a **michihub@hotmail.com**.
 
 ## Datos tratados
 
@@ -16,7 +16,7 @@ No envíes contraseñas, datos bancarios, documentos oficiales ni información s
 
 Los datos se utilizan para mostrar el contenido educativo, guardar el progreso, evaluar actividades, emitir o verificar certificados cuando corresponda, mantener la seguridad y responder solicitudes de soporte.
 
-MichiHub Educación no vende tus datos personales.
+michiEducation no vende tus datos personales.
 
 ## Terceros y conservación
 
