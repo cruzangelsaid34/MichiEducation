@@ -118,7 +118,7 @@ function actualizarFranja(){
         cargarProgreso();
     }else{
         cont.innerHTML = 'No detectamos tu sesión de MichiHub. Escribe tu correo para ver tu progreso: ' +
-            '<input type="email" id="input-correo" placeholder="tucorreo@gmail.com">' +
+            '<input type="email" id="input-correo" placeholder="michihub@hotmail.com">' +
             '<button id="btn-guardar-correo">Ver progreso</button>';
         document.getElementById("btn-guardar-correo").addEventListener("click", () => {
             const val = document.getElementById("input-correo").value.trim();
