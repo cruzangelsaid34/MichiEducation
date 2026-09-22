@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi progreso — MichiHub Educación</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="modulos-datos.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root{
+    --bg:#f4f0ea; --bg-soft:#eee7db; --text:#4a4238; --text-soft:#7a6f60;
+    --accent:#b09e8d; --accent-deep:#8a5a34; --card:#ffffff; --line:rgba(74,66,56,0.14);
+    --ok:#4f7a4a; --ok-bg:#e7f0e5; --mal:#a3453b; --mal-bg:#f4e3e1;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;line-height:1.6}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700;margin:0}
+.envoltura{max-width:720px;margin:0 auto;padding:0 20px}
+
+header.top{padding:44px 0 28px;border-bottom:1px solid var(--line);text-align:center}
+.eyebrow{color:var(--accent-deep);font-weight:700;font-size:0.85rem}
+header.top h1{font-size:1.9rem;font-style:italic;margin-top:6px}
+.top-nav{margin-top:14px;font-size:0.85rem}
+.top-nav a{color:var(--accent-deep);text-decoration:none}
+.top-nav a:hover{text-decoration:underline}
+
+.franja-correo{background:var(--bg-soft);border-bottom:1px solid var(--line);padding:12px 0;font-size:0.88rem;text-align:center}
+.franja-correo input{font-family:inherit;font-size:0.88rem;padding:6px 10px;border:1px solid var(--accent);border-radius:8px;margin-left:6px;background:#fff;color:var(--text)}
+.franja-correo button{font-family:inherit;font-size:0.85rem;font-weight:700;background:var(--accent-deep);color:#fff;border:none;border-radius:8px;padding:6px 14px;margin-left:6px;cursor:pointer}
+
+section{padding:36px 0}
+
+.resumen{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.resumen .cifra{text-align:center}
+.resumen .cifra strong{display:block;font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:var(--accent-deep)}
+.resumen .cifra span{font-size:0.8rem;color:var(--text-soft)}
+
+.fila-modulo{
+    display:flex;align-items:center;gap:14px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:14px 18px;margin-bottom:8px;
+}
+.fila-modulo .num{
+    flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+    background:var(--bg-soft);color:var(--accent-deep);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-style:italic;font-size:0.88rem;
+}
+.fila-modulo .titulo{flex:1 1 auto;font-size:0.95rem}
+.fila-modulo .estado{flex:0 0 auto;font-size:0.85rem;font-weight:700}
+.fila-modulo .estado.aprobado{color:var(--ok)}
+.fila-modulo .estado.pendiente{color:var(--mal)}
+.fila-modulo .estado.no-iniciado{color:var(--text-soft);font-weight:400}
+.fila-modulo a.accion{flex:0 0 auto;font-size:0.82rem;color:var(--accent-deep);text-decoration:none;font-weight:700}
+.fila-modulo a.accion:hover{text-decoration:underline}
+
+.tarjeta-certificado{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:32px;text-align:center;margin-top:20px;
+}
+.tarjeta-certificado h2{font-size:1.4rem;font-style:italic;margin-bottom:10px}
+.tarjeta-certificado p{color:var(--text-soft);margin-bottom:18px}
+.btn{display:inline-block;font-family:inherit;font-weight:700;font-size:0.95rem;background:var(--accent-deep);color:#fff;border:none;border-radius:999px;padding:13px 30px;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+#canvas-certificado{max-width:100%;border-radius:10px;margin:18px 0;box-shadow:0 6px 20px rgba(74,66,56,0.15)}
+
+.nota-pendiente{font-size:0.85rem;color:var(--text-soft);font-style:italic;margin-top:16px}
+
+.oculto{display:none}
+footer{text-align:center;padding:30px 0;color:var(--text-soft);font-size:0.82rem}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+
+<header class="top">
+    <div class="envoltura">
+        <span class="eyebrow">MichiHub Educación</span>
+        <h1>Mi progreso</h1>
+        <p class="top-nav"><a href="index.html">← Ruta completa</a></p>
+    </div>
+</header>
+
+<div class="franja-correo"><div class="envoltura" id="franja-contenido">Cargando...</div></div>
+
+<section>
+    <div class="envoltura">
+        <div class="resumen" id="resumen"></div>
+        <div id="lista-progreso"></div>
+        <div id="zona-certificado"></div>
+    </div>
+</section>
+
+<footer><div class="envoltura">MichiHub Educación · <a href="index.html">Volver a la ruta</a></div></footer>
+
+<script>
+const SUPABASE_URL = "https://veihvfcnczawoycphhga.supabase.co";
+const SUPABASE_KEY = "sb_publishable_DpvZMjPgjcfxCpK5OTJRHw_ah2emZkb";
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let correoActual = localStorage.getItem("michihubEmail") || "";
+
+function actualizarFranja(){
+    const cont = document.getElementById("franja-contenido");
+    if(correoActual){
+        cont.innerHTML = "Mostrando progreso de <strong>" + correoActual + "</strong> · " +
+            '<button id="btn-cambiar-correo" style="background:none;border:none;text-decoration:underline;color:var(--accent-deep);cursor:pointer;font-family:inherit">cambiar</button>';
+        document.getElementById("btn-cambiar-correo").addEventListener("click", () => {
+            correoActual = "";
+            actualizarFranja();
+            document.getElementById("resumen").innerHTML = "";
+            document.getElementById("lista-progreso").innerHTML = "";
+            document.getElementById("zona-certificado").innerHTML = "";
+        });
+        cargarProgreso();
+    }else{
+        cont.innerHTML = 'No detectamos tu sesión de MichiHub. Escribe tu correo para ver tu progreso: ' +
+            '<input type="email" id="input-correo" placeholder="tucorreo@gmail.com">' +
+            '<button id="btn-guardar-correo">Ver progreso</button>';
+        document.getElementById("btn-guardar-correo").addEventListener("click", () => {
+            const val = document.getElementById("input-correo").value.trim();
+            if(val && val.includes("@")){ correoActual = val; actualizarFranja(); }
+            else{ alert("Escribe un correo válido."); }
+        });
+    }
+}
+
+async function cargarProgreso(){
+    document.getElementById("lista-progreso").innerHTML = "Cargando tu progreso…";
+
+    let filas = [];
+    try{
+        const { data } = await supabase
+            .from("progreso_educacion")
+            .select("modulo, puntuacion, aprobado")
+            .eq("correo", correoActual);
+        filas = data || [];
+    }catch(err){
+        console.warn("No se pudo leer el progreso:", err);
+    }
+
+    const porModulo = {};
+    filas.forEach(f => { porModulo[f.modulo] = f; });
+
+    const aprobados = MODULOS.filter(m => porModulo[m.id] && porModulo[m.id].aprobado);
+    const totalIntentados = MODULOS.filter(m => porModulo[m.id]).length;
+    const sumaPuntos = MODULOS.reduce((acc, m) => acc + (porModulo[m.id] ? porModulo[m.id].puntuacion : 0), 0);
+    const promedio = totalIntentados ? Math.round(sumaPuntos / MODULOS.length) : 0;
+    const todosAprobados = aprobados.length === MODULOS.length;
+
+    document.getElementById("resumen").innerHTML =
+        '<div class="cifra"><strong>' + aprobados.length + '/' + MODULOS.length + '</strong><span>módulos aprobados</span></div>' +
+        '<div class="cifra"><strong>' + promedio + '</strong><span>promedio general</span></div>';
+
+    const lista = document.getElementById("lista-progreso");
+    lista.innerHTML = "";
+    MODULOS.forEach(m => {
+        const p = porModulo[m.id];
+        let estadoHtml, accionHtml;
+        if(p && p.aprobado){
+            estadoHtml = '<span class="estado aprobado">✅ ' + p.puntuacion + '/100</span>';
+            accionHtml = '<a class="accion" href="modulo.html?m=' + m.id + '">Repasar</a>';
+        }else if(p){
+            estadoHtml = '<span class="estado pendiente">⚠️ ' + p.puntuacion + '/100</span>';
+            accionHtml = '<a class="accion" href="modulo.html?m=' + m.id + '">Reintentar</a>';
+        }else{
+            estadoHtml = '<span class="estado no-iniciado">Sin empezar</span>';
+            accionHtml = '<a class="accion" href="modulo.html?m=' + m.id + '">Empezar</a>';
+        }
+        const div = document.createElement("div");
+        div.className = "fila-modulo";
+        div.innerHTML =
+            '<span class="num">' + m.id + '</span>' +
+            '<span class="titulo">' + m.titulo + '</span>' +
+            estadoHtml + accionHtml;
+        lista.appendChild(div);
+    });
+
+    mostrarZonaCertificado(todosAprobados, promedio);
+}
+
+function mostrarZonaCertificado(todosAprobados, promedio){
+    const zona = document.getElementById("zona-certificado");
+    if(!todosAprobados || promedio < 80){
+        zona.innerHTML = "";
+        return;
+    }
+    zona.innerHTML =
+        '<div class="tarjeta-certificado">' +
+            '<h2>¡Terminaste la ruta! 🐾🎉</h2>' +
+            '<p>Aprobaste los 18 módulos con un promedio de ' + promedio + '/100.</p>' +
+            '<button class="btn" id="btn-generar-certificado">Generar mi certificado</button>' +
+            '<canvas id="canvas-certificado" class="oculto"></canvas><br>' +
+            '<a id="link-descargar" class="btn oculto" download="certificado-michihub-educacion.png">Descargar certificado</a>' +
+            '<p class="nota-pendiente">El certificado cubre los 18 módulos evaluados. La presentación y revisión del proyecto final se coordina aparte con MichiHub.</p>' +
+        '</div>';
+
+    document.getElementById("btn-generar-certificado").addEventListener("click", () => generarCertificado(promedio));
+}
+
+async function obtenerONumeroFolio(nombre, promedio){
+    // Si ya existe un certificado para este correo, se reutiliza (mismo folio siempre)
+    const { data: existente } = await supabase
+        .from("certificados_educacion")
+        .select("id, folio, nombre, promedio, emitido_en")
+        .eq("correo", correoActual)
+        .maybeSingle();
+
+    if(existente && existente.folio) return existente;
+
+    const { data: nuevo, error } = await supabase
+        .from("certificados_educacion")
+        .insert({ correo: correoActual, nombre, promedio })
+        .select("id, emitido_en")
+        .single();
+
+    if(error) throw error;
+
+    const anio = new Date(nuevo.emitido_en).getFullYear();
+    const folio = "MHE-" + anio + "-" + String(nuevo.id).padStart(5, "0");
+
+    await supabase.from("certificados_educacion").update({ folio }).eq("id", nuevo.id);
+
+    return { id: nuevo.id, folio, nombre, promedio, emitido_en: nuevo.emitido_en };
+}
+
+async function generarCertificado(promedio){
+    const nombre = localStorage.getItem("michihubNombre") || correoActual.split("@")[0];
+    const boton = document.getElementById("btn-generar-certificado");
+    boton.disabled = true;
+    boton.textContent = "Generando…";
+
+    try{
+        const cert = await obtenerONumeroFolio(nombre, promedio);
+        await dibujarCertificado(cert);
+        boton.classList.add("oculto");
+    }catch(err){
+        console.warn("No se pudo generar el certificado:", err);
+        alert("No se pudo generar el certificado. ¿Ya creaste la tabla 'certificados_educacion' en Supabase?");
+        boton.disabled = false;
+        boton.textContent = "Generar mi certificado";
+    }
+}
+
+let _logoImg = null;
+function cargarLogo(){
+    if(_logoImg) return Promise.resolve(_logoImg);
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => { _logoImg = img; resolve(img); };
+        img.onerror = reject;
+        img.src = "logo-educacion.png"; // se ignora si no existe; ver más abajo
+        img.onerror = () => resolve(null);
+    });
+}
+
+async function dibujarCertificado(cert){
+    const canvas = document.getElementById("canvas-certificado");
+    canvas.width = 720; canvas.height = 460;
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#f4f0ea";
+    ctx.fillRect(0, 0, 720, 460);
+    ctx.strokeStyle = "#b09e8d"; ctx.lineWidth = 7;
+    ctx.strokeRect(16, 16, 688, 428);
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(30, 30, 660, 400);
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#4a4238";
+    ctx.font = "italic bold 15px 'Nunito', Arial, sans-serif";
+    ctx.fillText("MICHIHUB EDUCACIÓN", 360, 78);
+
+    ctx.font = "italic bold 30px 'Playfair Display', serif";
+    ctx.fillText("Certificado de Finalización", 360, 122);
+
+    ctx.font = "13px 'Nunito', Arial, sans-serif";
+    ctx.fillText("Se certifica que", 360, 158);
+
+    ctx.font = "italic bold 28px 'Playfair Display', serif";
+    ctx.fillText(cert.nombre, 360, 198);
+
+    ctx.font = "13px 'Nunito', Arial, sans-serif";
+    ctx.fillText("completó la ruta completa de MichiHub Educación", 360, 224);
+    ctx.fillText("(18 módulos) con un promedio de " + cert.promedio + "/100", 360, 242);
+
+    const fecha = new Date(cert.emitido_en).toLocaleDateString("es-MX", { day:"numeric", month:"long", year:"numeric" });
+    ctx.font = "italic 12px 'Nunito', Arial, sans-serif";
+    ctx.fillText("Emitido el " + fecha, 360, 270);
+
+    ctx.font = "bold 14px 'Nunito', Arial, sans-serif";
+    ctx.fillStyle = "#b09e8d";
+    ctx.fillText("Folio: " + cert.folio, 360, 300);
+    ctx.fillStyle = "#4a4238";
+
+    // Logo (si está disponible)
+    try{
+        const logo = await cargarLogo();
+        if(logo) ctx.drawImage(logo, 360 - 24, 40, 48, 48);
+    }catch(err){ /* sin logo, no pasa nada */ }
+
+    // Código QR de verificación
+    const urlVerificacion = location.origin + location.pathname.replace(/progreso\.html$/, "verificar.html") + "?folio=" + encodeURIComponent(cert.folio);
+    try{
+        const qrCanvas = document.createElement("canvas");
+        await QRCode.toCanvas(qrCanvas, urlVerificacion, { width: 110, margin: 1, color: { dark: "#4a4238", light: "#ffffff" } });
+        ctx.drawImage(qrCanvas, 300, 330, 120, 120);
+        ctx.font = "10px 'Nunito', Arial, sans-serif";
+        ctx.fillStyle = "#7a6f60";
+        ctx.fillText("Verifica este certificado escaneando el código", 360, 440);
+    }catch(err){
+        console.warn("No se pudo generar el QR:", err);
+    }
+
+    canvas.classList.remove("oculto");
+    const link = document.getElementById("link-descargar");
+    link.href = canvas.toDataURL();
+    link.classList.remove("oculto");
+}
+
+actualizarFranja();
+</script>
+</body>
+</html>
