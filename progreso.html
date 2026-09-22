@@ -99,7 +99,7 @@ footer a{color:inherit}
 <script>
 const SUPABASE_URL = "https://veihvfcnczawoycphhga.supabase.co";
 const SUPABASE_KEY = "sb_publishable_DpvZMjPgjcfxCpK5OTJRHw_ah2emZkb";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 let correoActual = localStorage.getItem("michihubEmail") || "";
 
@@ -131,7 +131,7 @@ function actualizarFranja(){
 async function cargarProgreso(){
     document.getElementById("lista-progreso").innerHTML = "Cargando tu progreso…";
 
-    let filas = [];
+    let filas = []; const almacen=JSON.parse(localStorage.getItem('michihubProgreso')||'{}'); filas=Object.values(almacen[correoActual]||{});
     try{
         const { data } = await supabase
             .from("progreso_educacion")
