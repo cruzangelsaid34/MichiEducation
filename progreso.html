@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mi progreso — MichiHub Educación</title>
+<title>Mi progreso — michiEducation</title>
 
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="modulos-datos.js"></script>
@@ -78,7 +78,7 @@ footer a{color:inherit}
 
 <header class="top">
     <div class="envoltura">
-        <span class="eyebrow">MichiHub Educación</span>
+        <span class="eyebrow">michiEducation</span>
         <h1>Mi progreso</h1>
         <p class="top-nav"><a href="index.html">← Ruta completa</a></p>
     </div>
@@ -94,7 +94,7 @@ footer a{color:inherit}
     </div>
 </section>
 
-<footer><div class="envoltura">MichiHub Educación · <a href="index.html">Volver a la ruta</a></div></footer>
+<footer><div class="envoltura">michiEducation · <a href="index.html">Volver a la ruta</a></div></footer>
 
 <script>
 const SUPABASE_URL = "https://veihvfcnczawoycphhga.supabase.co";
@@ -272,7 +272,7 @@ async function dibujarCertificado(cert){
     ctx.textAlign = "center";
     ctx.fillStyle = "#4a4238";
     ctx.font = "italic bold 15px 'Nunito', Arial, sans-serif";
-    ctx.fillText("MICHIHUB EDUCACIÓN", 360, 78);
+    ctx.fillText("michiEducation", 360, 78);
 
     ctx.font = "italic bold 30px 'Playfair Display', serif";
     ctx.fillText("Certificado de Finalización", 360, 122);
@@ -284,7 +284,7 @@ async function dibujarCertificado(cert){
     ctx.fillText(cert.nombre, 360, 198);
 
     ctx.font = "13px 'Nunito', Arial, sans-serif";
-    ctx.fillText("completó la ruta completa de MichiHub Educación", 360, 224);
+    ctx.fillText("completó la ruta completa de michiEducation", 360, 224);
     ctx.fillText("(18 módulos) con un promedio de " + cert.promedio + "/100", 360, 242);
 
     const fecha = new Date(cert.emitido_en).toLocaleDateString("es-MX", { day:"numeric", month:"long", year:"numeric" });
