@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Módulo — MichiHub Educación</title>
+<title>Módulo — michiEducation</title>
 <script src="modulos-datos.js"></script>
 <style>
 :root{--bg:#f4f0ea;--text:#4a4238;--soft:#7a6f60;--accent:#8a5a34;--card:#fff;--line:rgba(74,66,56,.14);--ok:#e7f0e5;--bad:#f4e3e1}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.6}.wrap{max-width:680px;margin:auto;padding:0 20px}header{text-align:center;padding:40px 0 25px;border-bottom:1px solid var(--line)}h1,h2,h3{font-family:Georgia,serif}h1{font-size:1.7rem;font-style:italic}a{color:var(--accent)}.bar{background:#eee7db;padding:12px;text-align:center}.bar input,.bar button{padding:7px;border-radius:8px;border:1px solid #b09e8d}.bar button,.btn{background:var(--accent);color:#fff;cursor:pointer}.bar button{margin-left:6px}section{padding:30px 0}.card,.question{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:0 0 14px}.question p{font-weight:bold}.option{display:block;padding:9px;border-radius:8px}.option:hover{background:#eee7db}.btn{border:0;border-radius:999px;padding:12px 26px;font-weight:bold}.center{text-align:center}.hidden{display:none}.result{text-align:center;border-radius:16px;padding:25px}.pass{background:var(--ok)}.fail{background:var(--bad)}footer{text-align:center;padding:25px;color:var(--soft);font-size:.85rem}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div>MichiHub Educación</div><h1 id="title">Cargando módulo…</h1><p><a href="index.html">← Ruta completa</a> · <a href="progreso.html">Mi progreso</a></p></div></header>
+<header><div class="wrap"><div>michiEducation</div><h1 id="title">Cargando módulo…</h1><p><a href="index.html">← Ruta completa</a> · <a href="progreso.html">Mi progreso</a></p></div></header>
 <div class="bar"><div class="wrap" id="emailbar">Cargando…</div></div>
 <section id="lesson"><div class="wrap"><div id="topics"></div><p class="center"><button class="btn" id="show-test">Ir a la evaluación</button></p></div></section>
 <section id="test" class="hidden"><div class="wrap"><h2>Evaluación del módulo</h2><p id="count"></p><div id="questions"></div><p class="center"><button class="btn" id="submit">Enviar respuestas</button></p></div></section>
 <section id="result" class="hidden"><div class="wrap"><div id="resultbox" class="result"></div></div></section>
-<footer>MichiHub Educación · <a href="index.html">Volver a la ruta</a></footer>
+<footer>michiEducation · <a href="index.html">Volver a la ruta</a></footer>
 <script>
 (function(){
  const n=parseInt(new URLSearchParams(location.search).get('m'))||1;
