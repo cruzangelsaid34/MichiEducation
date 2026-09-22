@@ -1,20 +1,20 @@
-# Términos de uso — MichiHub Educación
+# Términos de uso — michiEducation
 
 **Última actualización: 22 de septiembre de 2026**
 
 ## 1. Aceptación
-Al acceder o utilizar **MichiHub Educación**, aceptas estos términos. Si no estás de acuerdo, no utilices el sitio.
+Al acceder o utilizar **michiEducation**, aceptas estos términos. Si no estás de acuerdo, no utilices el sitio.
 
 ## 2. Uso permitido
 El sitio ofrece contenidos educativos y evaluaciones para fines personales y formativos. Debes utilizarlo de forma lícita, respetuosa y sin interferir con su funcionamiento.
 
-No está permitido copiar, revender, redistribuir, modificar o explotar comercialmente el contenido, el diseño, el código o los materiales de MichiHub Educación sin autorización escrita.
+No está permitido copiar, revender, redistribuir, modificar o explotar comercialmente el contenido, el diseño, el código o los materiales de michiEducation sin autorización escrita.
 
 ## 3. Cuenta y evaluaciones
 Cuando una evaluación solicite un correo electrónico, debes proporcionar información que tengas derecho a utilizar. El resultado de una evaluación no constituye una certificación oficial ni sustituye asesoría profesional.
 
 ## 4. Propiedad intelectual
-MichiHub Educación, sus materiales, identidad visual, código y contenidos son propiedad de **Ángel Said Cruz Muñoz**, salvo que se indique lo contrario. Los derechos se rigen también por el archivo `LICENSE`.
+michiEducation, sus materiales, identidad visual, código y contenidos son propiedad de **Ángel Said Cruz Muñoz**, salvo que se indique lo contrario. Los derechos se rigen también por el archivo `LICENSE`.
 
 ## 5. Disponibilidad y responsabilidad
 El servicio se ofrece “tal cual”. Pueden existir interrupciones, errores o cambios sin previo aviso. En la medida permitida por la ley, no se garantiza que el sitio sea ininterrumpido o libre de errores.
