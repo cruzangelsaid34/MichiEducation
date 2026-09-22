@@ -8,228 +8,34 @@
 <script src="modulos-datos.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Nunito:wght@400;600;700;800&display=swap');
-
-:root{
-    --bg:#f4f0ea; --bg-soft:#eee7db; --text:#4a4238; --text-soft:#7a6f60;
-    --accent:#b09e8d; --accent-deep:#8a5a34; --card:#ffffff; --line:rgba(74,66,56,0.14);
-    --ok:#4f7a4a; --ok-bg:#e7f0e5; --mal:#a3453b; --mal-bg:#f4e3e1;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;line-height:1.6}
-h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700;margin:0}
-.envoltura{max-width:680px;margin:0 auto;padding:0 20px}
-
-header.top{padding:44px 0 28px;border-bottom:1px solid var(--line);text-align:center}
-.eyebrow{color:var(--accent-deep);font-weight:700;font-size:0.85rem}
-header.top h1{font-size:1.7rem;font-style:italic;margin-top:6px}
-.top-nav{margin-top:14px;font-size:0.85rem}
-.top-nav a{color:var(--accent-deep);text-decoration:none}
-.top-nav a:hover{text-decoration:underline}
-
-.franja-correo{background:var(--bg-soft);border-bottom:1px solid var(--line);padding:12px 0;font-size:0.88rem;text-align:center}
-.franja-correo input{font-family:inherit;font-size:0.88rem;padding:6px 10px;border:1px solid var(--accent);border-radius:8px;margin-left:6px;background:#fff;color:var(--text)}
-.franja-correo button{font-family:inherit;font-size:0.85rem;font-weight:700;background:var(--accent-deep);color:#fff;border:none;border-radius:8px;padding:6px 14px;margin-left:6px;cursor:pointer}
-
-section{padding:36px 0}
-.tema{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-bottom:14px}
-.tema h3{font-size:1.08rem;font-style:italic;margin-bottom:8px}
-.tema p{margin:0;color:var(--text-soft);font-size:0.95rem}
-.nota-modulo{font-style:italic;color:var(--text-soft);margin-bottom:16px;font-size:0.92rem}
-
-.btn{display:inline-block;font-family:inherit;font-weight:700;font-size:0.95rem;background:var(--accent-deep);color:#fff;border:none;border-radius:999px;padding:13px 30px;cursor:pointer;text-decoration:none}
-.btn:disabled{opacity:0.5;cursor:not-allowed}
-.centrado{text-align:center}
-
-.pregunta{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-bottom:14px}
-.pregunta p.enunciado{font-weight:700;margin-bottom:12px}
-.opcion{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;border:1px solid transparent}
-.opcion:hover{background:var(--bg-soft)}
-.opcion input{accent-color:var(--accent-deep)}
-
-.resultado{border-radius:16px;padding:28px 26px;text-align:center}
-.resultado.aprobado{background:var(--ok-bg);color:var(--ok)}
-.resultado.reprobado{background:var(--mal-bg);color:var(--mal)}
-.resultado h2{font-size:1.6rem;font-style:italic;margin-bottom:8px;color:inherit}
-.resultado .nota{font-size:2.4rem;font-family:'Playfair Display',serif;font-style:italic;margin:8px 0}
-
-.oculto{display:none}
-footer{text-align:center;padding:30px 0;color:var(--text-soft);font-size:0.82rem}
-footer a{color:inherit}
+:root{--bg:#f4f0ea;--bg-soft:#eee7db;--text:#4a4238;--text-soft:#7a6f60;--accent:#b09e8d;--accent-deep:#8a5a34;--card:#fff;--line:rgba(74,66,56,.14);--ok:#4f7a4a;--ok-bg:#e7f0e5;--mal:#a3453b;--mal-bg:#f4e3e1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;line-height:1.6}h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700;margin:0}.envoltura{max-width:680px;margin:0 auto;padding:0 20px}header.top{padding:44px 0 28px;border-bottom:1px solid var(--line);text-align:center}.eyebrow{color:var(--accent-deep);font-weight:700;font-size:.85rem}header.top h1{font-size:1.7rem;font-style:italic;margin-top:6px}.top-nav{margin-top:14px;font-size:.85rem}.top-nav a{color:var(--accent-deep);text-decoration:none}.top-nav a:hover{text-decoration:underline}.franja-correo{background:var(--bg-soft);border-bottom:1px solid var(--line);padding:12px 0;font-size:.88rem;text-align:center}.franja-correo input{font-family:inherit;font-size:.88rem;padding:6px 10px;border:1px solid var(--accent);border-radius:8px;margin-left:6px;background:#fff;color:var(--text)}.franja-correo button{font-family:inherit;font-size:.85rem;font-weight:700;background:var(--accent-deep);color:#fff;border:0;border-radius:8px;padding:6px 14px;margin-left:6px;cursor:pointer}section{padding:36px 0}.tema{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-bottom:14px}.tema h3{font-size:1.08rem;font-style:italic;margin-bottom:8px}.tema p{margin:0;color:var(--text-soft);font-size:.95rem}.nota-modulo{font-style:italic;color:var(--text-soft);margin-bottom:16px;font-size:.92rem}.btn{display:inline-block;font-family:inherit;font-weight:700;font-size:.95rem;background:var(--accent-deep);color:#fff;border:0;border-radius:999px;padding:13px 30px;cursor:pointer;text-decoration:none}.btn:disabled{opacity:.5;cursor:not-allowed}.centrado{text-align:center}.pregunta{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-bottom:14px}.pregunta p.enunciado{font-weight:700;margin-bottom:12px}.opcion{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;border:1px solid transparent}.opcion:hover{background:var(--bg-soft)}.opcion input{accent-color:var(--accent-deep)}.resultado{border-radius:16px;padding:28px 26px;text-align:center}.resultado.aprobado{background:var(--ok-bg);color:var(--ok)}.resultado.reprobado{background:var(--mal-bg);color:var(--mal)}.resultado h2{font-size:1.6rem;font-style:italic;margin-bottom:8px;color:inherit}.resultado .nota{font-size:2.4rem;font-family:'Playfair Display',serif;font-style:italic;margin:8px 0}.oculto{display:none}footer{text-align:center;padding:30px 0;color:var(--text-soft);font-size:.82rem}footer a{color:inherit}
 </style>
 </head>
 <body>
-
-<header class="top">
-    <div class="envoltura">
-        <span class="eyebrow">MichiHub Educación</span>
-        <h1 id="titulo-modulo">Cargando módulo…</h1>
-        <p class="top-nav"><a href="index.html">← Ruta completa</a> · <a href="progreso.html">Mi progreso</a></p>
-    </div>
-</header>
-
+<header class="top"><div class="envoltura"><span class="eyebrow">MichiHub Educación</span><h1 id="titulo-modulo">Cargando módulo…</h1><p class="top-nav"><a href="index.html">← Ruta completa</a> · <a href="progreso.html">Mi progreso</a></p></div></header>
 <div class="franja-correo"><div class="envoltura" id="franja-contenido">Cargando...</div></div>
-
-<section id="seccion-leccion">
-    <div class="envoltura">
-        <p class="nota-modulo oculto" id="nota-modulo"></p>
-        <div id="lista-temas"></div>
-        <p class="centrado" style="margin-top:24px"><button class="btn" id="btn-ir-evaluacion">Ir a la evaluación</button></p>
-    </div>
-</section>
-
-<section id="seccion-evaluacion" class="oculto">
-    <div class="envoltura">
-        <h2 style="font-style:italic;font-size:1.4rem;margin-bottom:16px">Evaluación del módulo</h2>
-        <p style="color:var(--text-soft);margin-bottom:20px" id="conteo-preguntas"></p>
-        <div id="lista-preguntas"></div>
-        <p class="centrado" style="margin-top:20px"><button class="btn" id="btn-enviar">Enviar respuestas</button></p>
-    </div>
-</section>
-
-<section id="seccion-resultado" class="oculto">
-    <div class="envoltura"><div class="resultado" id="caja-resultado"></div></div>
-</section>
-
+<section id="seccion-leccion"><div class="envoltura"><p class="nota-modulo oculto" id="nota-modulo"></p><div id="lista-temas"></div><p class="centrado" style="margin-top:24px"><button class="btn" id="btn-ir-evaluacion">Ir a la evaluación</button></p></div></section>
+<section id="seccion-evaluacion" class="oculto"><div class="envoltura"><h2 style="font-style:italic;font-size:1.4rem;margin-bottom:16px">Evaluación del módulo</h2><p style="color:var(--text-soft);margin-bottom:20px" id="conteo-preguntas"></p><div id="lista-preguntas"></div><p class="centrado" style="margin-top:20px"><button class="btn" id="btn-enviar">Enviar respuestas</button></p></div></section>
+<section id="seccion-resultado" class="oculto"><div class="envoltura"><div class="resultado" id="caja-resultado"></div></div></section>
 <footer><div class="envoltura">MichiHub Educación · <a href="index.html">Volver a la ruta</a></div></footer>
-
 <script>
-const SUPABASE_URL = "https://veihvfcnczawoycphhga.supabase.co";
-const SUPABASE_KEY = "sb_publishable_DpvZMjPgjcfxCpK5OTJRHw_ah2emZkb";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-const params = new URLSearchParams(location.search);
-const numeroModulo = parseInt(params.get("m")) || 1;
-const modulo = MODULOS.find(m => m.id === numeroModulo);
-
-let correoActual = localStorage.getItem("michihubEmail") || "";
-
-if(!modulo){
-    document.getElementById("titulo-modulo").textContent = "Módulo no encontrado";
-    document.getElementById("seccion-leccion").innerHTML = '<div class="envoltura"><p>No existe el módulo ' + numeroModulo + '. <a href="index.html">Vuelve a la ruta completa</a>.</p></div>';
-}else{
-    document.title = "Módulo " + modulo.id + " · " + modulo.titulo + " — MichiHub Educación";
-    document.getElementById("titulo-modulo").textContent = "Módulo " + modulo.id + " — " + modulo.titulo;
-
-    if(modulo.nota){
-        const nota = document.getElementById("nota-modulo");
-        nota.textContent = modulo.nota;
-        nota.classList.remove("oculto");
-    }
-
-    const contenedorTemas = document.getElementById("lista-temas");
-    modulo.temas.forEach(te => {
-        const div = document.createElement("div");
-        div.className = "tema";
-        div.innerHTML = "<h3>" + te.n + "</h3><p>" + te.d + "</p>";
-        contenedorTemas.appendChild(div);
-    });
-
-    document.getElementById("conteo-preguntas").textContent =
-        modulo.preguntas.length + " preguntas · necesitas 80/100 para aprobar.";
-
-    const contenedorPreguntas = document.getElementById("lista-preguntas");
-    modulo.preguntas.forEach((pr, i) => {
-        const div = document.createElement("div");
-        div.className = "pregunta";
-        let opcionesHtml = pr.o.map((op, j) =>
-            '<label class="opcion"><input type="radio" name="pregunta' + i + '" value="' + j + '"> ' + op + '</label>'
-        ).join("");
-        div.innerHTML = '<p class="enunciado">' + (i + 1) + ". " + pr.p + '</p>' + opcionesHtml;
-        contenedorPreguntas.appendChild(div);
-    });
-
-    document.getElementById("btn-ir-evaluacion").addEventListener("click", () => {
-        document.getElementById("seccion-evaluacion").classList.remove("oculto");
-        document.getElementById("seccion-evaluacion").scrollIntoView({ behavior: "smooth" });
-    });
-
-    document.getElementById("btn-enviar").addEventListener("click", async () => {
-        if(!correoActual){
-            alert("Escribe tu correo arriba antes de enviar la evaluación.");
-            return;
-        }
-        let correctas = 0, faltan = false;
-        modulo.preguntas.forEach((pr, i) => {
-            const marcada = document.querySelector('input[name="pregunta' + i + '"]:checked');
-            if(!marcada){ faltan = true; return; }
-            if(parseInt(marcada.value) === pr.c) correctas++;
-        });
-        if(faltan){ alert("Contesta todas las preguntas antes de enviar."); return; }
-
-        const puntuacion = Math.round((correctas / modulo.preguntas.length) * 100);
-        const aprobado = puntuacion >= 80;
-        await guardarProgreso(correoActual, puntuacion, aprobado);
-        mostrarResultado(puntuacion, aprobado, correctas);
-    });
-}
-
-async function guardarProgreso(correo, puntuacion, aprobado){
-    try{
-        const { data: existente } = await supabase
-            .from("progreso_educacion").select("id, intentos")
-            .eq("correo", correo).eq("modulo", numeroModulo).maybeSingle();
-
-        if(existente){
-            await supabase.from("progreso_educacion").update({
-                puntuacion, aprobado,
-                intentos: (existente.intentos || 1) + 1,
-                actualizado_en: new Date().toISOString()
-            }).eq("id", existente.id);
-        }else{
-            await supabase.from("progreso_educacion").insert({
-                correo, modulo: numeroModulo, puntuacion, aprobado, intentos: 1
-            });
-        }
-    }catch(err){
-        console.warn("No se pudo guardar el progreso:", err);
-    }
-}
-
-function mostrarResultado(puntuacion, aprobado, correctas){
-    document.getElementById("seccion-leccion").classList.add("oculto");
-    document.getElementById("seccion-evaluacion").classList.add("oculto");
-    const seccion = document.getElementById("seccion-resultado");
-    seccion.classList.remove("oculto");
-
-    const siguienteModulo = numeroModulo < MODULOS.length ? numeroModulo + 1 : null;
-
-    const caja = document.getElementById("caja-resultado");
-    caja.className = "resultado " + (aprobado ? "aprobado" : "reprobado");
-    caja.innerHTML =
-        "<h2>" + (aprobado ? "¡Aprobado! 🐾" : "Todavía no") + "</h2>" +
-        '<div class="nota">' + puntuacion + "/100</div>" +
-        "<p>" + correctas + " de " + modulo.preguntas.length + " respuestas correctas.</p>" +
-        (aprobado
-            ? "<p style='margin-top:14px'>El módulo " + numeroModulo + " quedó registrado como aprobado en tu progreso.</p>" +
-              '<p class="centrado" style="margin-top:16px">' +
-              (siguienteModulo ? '<a class="btn" href="modulo.html?m=' + siguienteModulo + '">Siguiente módulo</a>' : '<a class="btn" href="progreso.html">Ver mi progreso</a>') +
-              '</p>'
-            : "<p style='margin-top:14px'>Necesitas 80/100 para aprobar. Revisa el contenido y vuelve a intentarlo cuando quieras.</p>" +
-              '<p class="centrado" style="margin-top:16px"><button class="btn" onclick="location.reload()">Reintentar</button></p>');
-
-    seccion.scrollIntoView({ behavior: "smooth" });
-}
-
-function actualizarFranja(){
-    const cont = document.getElementById("franja-contenido");
-    if(correoActual){
-        cont.innerHTML = "Evaluando como <strong>" + correoActual + "</strong> · " +
-            '<button id="btn-cambiar-correo" style="background:none;border:none;text-decoration:underline;color:var(--accent-deep);cursor:pointer;font-family:inherit">cambiar</button>';
-        document.getElementById("btn-cambiar-correo").addEventListener("click", () => {
-            correoActual = "";
-            actualizarFranja();
-        });
-    }else{
-        cont.innerHTML = 'No detectamos tu sesión de MichiHub. Escribe tu correo para guardar tu progreso: ' +
-            '<input type="email" id="input-correo" placeholder="tucorreo@gmail.com">' +
-            '<button id="btn-guardar-correo">Usar este correo</button>';
-        document.getElementById("btn-guardar-correo").addEventListener("click", () => {
-            const val = document.getElementById("input-correo").value.trim();
-            if(val && val.includes("@")){ correoActual = val; actualizarFranja(); }
-            else{ alert("Escribe un correo válido."); }
-        });
-    }
-}
+const SUPABASE_URL="https://veihvfcnczawoycphhga.supabase.co";
+const SUPABASE_KEY="sb_publishable_DpvZMjPgjcfxCpK5OTJRHw_ah2emZkb";
+const supabase=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+const params=new URLSearchParams(location.search),numeroModulo=parseInt(params.get("m"))||1,modulo=MODULOS.find(m=>m.id===numeroModulo);
+let correoActual=localStorage.getItem("michihubEmail")||"";
+if(!modulo){document.getElementById("titulo-modulo").textContent="Módulo no encontrado";document.getElementById("seccion-leccion").innerHTML='<div class="envoltura"><p>No existe el módulo '+numeroModulo+'. <a href="index.html">Vuelve a la ruta completa</a>.</p></div>'}else{
+document.title="Módulo "+modulo.id+" · "+modulo.titulo+" — MichiHub Educación";document.getElementById("titulo-modulo").textContent="Módulo "+modulo.id+" — "+modulo.titulo;
+if(modulo.nota){const nota=document.getElementById("nota-modulo");nota.textContent=modulo.nota;nota.classList.remove("oculto")}
+const contenedorTemas=document.getElementById("lista-temas");modulo.temas.forEach(te=>{const div=document.createElement("div");div.className="tema";div.innerHTML="<h3>"+te.n+"</h3><p>"+te.d+"</p>";contenedorTemas.appendChild(div)});
+document.getElementById("conteo-preguntas").textContent=modulo.preguntas.length+" preguntas · necesitas 80/100 para aprobar.";
+const contenedorPreguntas=document.getElementById("lista-preguntas");modulo.preguntas.forEach((pr,i)=>{const div=document.createElement("div");div.className="pregunta";div.innerHTML='<p class="enunciado">'+(i+1)+". "+pr.p+'</p>'+pr.o.map((op,j)=>'<label class="opcion"><input type="radio" name="pregunta'+i+'" value="'+j+'"> '+op+'</label>').join("");contenedorPreguntas.appendChild(div)});
+document.getElementById("btn-ir-evaluacion").addEventListener("click",()=>{document.getElementById("seccion-evaluacion").classList.remove("oculto");document.getElementById("seccion-evaluacion").scrollIntoView({behavior:"smooth"})});
+document.getElementById("btn-enviar").addEventListener("click",async()=>{if(!correoActual){alert("Escribe tu correo arriba antes de enviar la evaluación.");return}let correctas=0,faltan=false;modulo.preguntas.forEach((pr,i)=>{const marcada=document.querySelector('input[name="pregunta'+i+'"]:checked');if(!marcada){faltan=true;return}if(parseInt(marcada.value)===pr.c)correctas++});if(faltan){alert("Contesta todas las preguntas antes de enviar.");return}const puntuacion=Math.round(correctas/modulo.preguntas.length*100),aprobado=puntuacion>=80;await guardarProgreso(correoActual,puntuacion,aprobado);mostrarResultado(puntuacion,aprobado,correctas)})}
+async function guardarProgreso(correo,puntuacion,aprobado){if(!supabase)return;try{const{data:existente}=await supabase.from("progreso_educacion").select("id, intentos").eq("correo",correo).eq("modulo",numeroModulo).maybeSingle();if(existente){await supabase.from("progreso_educacion").update({puntuacion,aprobado,intentos:(existente.intentos||1)+1,actualizado_en:new Date().toISOString()}).eq("id",existente.id)}else{await supabase.from("progreso_educacion").insert({correo,modulo:numeroModulo,puntuacion,aprobado,intentos:1})}}catch(err){console.warn("No se pudo guardar el progreso:",err)}}
+function mostrarResultado(puntuacion,aprobado,correctas){document.getElementById("seccion-leccion").classList.add("oculto");document.getElementById("seccion-evaluacion").classList.add("oculto");const seccion=document.getElementById("seccion-resultado");seccion.classList.remove("oculto");const siguienteModulo=numeroModulo<MODULOS.length?numeroModulo+1:null;const caja=document.getElementById("caja-resultado");caja.className="resultado "+(aprobado?"aprobado":"reprobado");caja.innerHTML="<h2>"+(aprobado?"¡Aprobado! 🐾":"Todavía no")+"</h2>"+'<div class="nota">'+puntuacion+"/100</div>"+"<p>"+correctas+" de "+modulo.preguntas.length+" respuestas correctas.</p>"+(aprobado?"<p style='margin-top:14px'>El módulo "+numeroModulo+" quedó registrado como aprobado en tu progreso.</p>"+'<p class="centrado" style="margin-top:16px">'+(siguienteModulo?'<a class="btn" href="modulo.html?m='+siguienteModulo+'">Siguiente módulo</a>':'<a class="btn" href="progreso.html">Ver mi progreso</a>')+'</p>':"<p style='margin-top:14px'>Necesitas 80/100 para aprobar. Revisa el contenido y vuelve a intentarlo cuando quieras.</p>"+'<p class="centrado" style="margin-top:16px"><button class="btn" onclick="location.reload()">Reintentar</button></p>');seccion.scrollIntoView({behavior:"smooth"})}
+function actualizarFranja(){const cont=document.getElementById("franja-contenido");if(correoActual){cont.innerHTML="Evaluando como <strong>"+correoActual+"</strong> · "+'<button id="btn-cambiar-correo" style="background:none;border:none;text-decoration:underline;color:var(--accent-deep);cursor:pointer;font-family:inherit">cambiar</button>';document.getElementById("btn-cambiar-correo").addEventListener("click",()=>{correoActual="";localStorage.removeItem("michihubEmail");actualizarFranja()})}else{cont.innerHTML='No detectamos tu sesión de MichiHub. Escribe tu correo para guardar tu progreso: '+'<input type="email" id="input-correo" placeholder="tucorreo@gmail.com">'+'<button id="btn-guardar-correo">Usar este correo</button>';document.getElementById("btn-guardar-correo").addEventListener("click",()=>{const val=document.getElementById("input-correo").value.trim();if(val&&val.includes("@")){correoActual=val;localStorage.setItem("michihubEmail",val);actualizarFranja()}else alert("Escribe un correo válido.")})}}
 actualizarFranja();
 </script>
 </body>
