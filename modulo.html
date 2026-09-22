@@ -23,7 +23,7 @@
  const mod=data.find(x=>x.id===n);
  const title=document.getElementById('title'),topics=document.getElementById('topics'),questions=document.getElementById('questions');
  let email=localStorage.getItem('michihubEmail')||'';
- function emailBar(){const b=document.getElementById('emailbar');if(email){b.innerHTML='Evaluando como <strong>'+email+'</strong> · <button id="change">cambiar</button>';document.getElementById('change').onclick=()=>{email='';localStorage.removeItem('michihubEmail');emailBar()}}else{b.innerHTML='Escribe tu correo para guardar tu progreso: <input id="email" type="email" placeholder="tucorreo@gmail.com"><button id="save">Usar este correo</button>';document.getElementById('save').onclick=()=>{const v=document.getElementById('email').value.trim();if(!v.includes('@'))return alert('Escribe un correo válido.');email=v;localStorage.setItem('michihubEmail',v);emailBar()}}}
+ function emailBar(){const b=document.getElementById('emailbar');if(email){b.innerHTML='Evaluando como <strong>'+email+'</strong> · <button id="change">cambiar</button>';document.getElementById('change').onclick=()=>{email='';localStorage.removeItem('michihubEmail');emailBar()}}else{b.innerHTML='Escribe tu correo para guardar tu progreso: <input id="email" type="email" placeholder="michihub@hotmail.com"><button id="save">Usar este correo</button>';document.getElementById('save').onclick=()=>{const v=document.getElementById('email').value.trim();if(!v.includes('@'))return alert('Escribe un correo válido.');email=v;localStorage.setItem('michihubEmail',v);emailBar()}}}
  emailBar();
  if(!mod){title.textContent='Módulo no encontrado';return}
  title.textContent='Módulo '+mod.id+' — '+mod.titulo;
