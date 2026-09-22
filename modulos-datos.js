@@ -1,6 +1,6 @@
 // Contenido y evaluaciones de los 18 módulos de MichiHub Educación.
 // Cada módulo: id, titulo, temas:[{n:nombre, d:descripcion}], preguntas:[{p,o:[opciones],c:indiceCorrecta}]
-const MODULOS = [
+window.MODULOS = [
 
 { id:1, titulo:"Computación y herramientas", temas:[
     {n:"Hardware y software", d:"El hardware es todo lo físico de una computadora: el procesador, la memoria, el disco, la pantalla. El software es el conjunto de instrucciones que le dicen a ese hardware qué hacer."},
