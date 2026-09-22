@@ -1,4 +1,4 @@
-# Política de seguridad — MichiHub Educación
+# Política de seguridad — michiEducation
 
 ## Versiones compatibles
 
@@ -20,7 +20,7 @@ Las revisiones se realizarán de forma razonable. No se garantiza una fecha espe
 
 ## Alcance
 
-Esta política cubre el código, los archivos y la página oficial de MichiHub Educación publicados en este repositorio.
+Esta política cubre el código, los archivos y la página oficial de michiEducation publicados en este repositorio.
 
 No intentes acceder a cuentas, datos o servicios de terceros, ni realices pruebas que degraden la disponibilidad del proyecto.
 
